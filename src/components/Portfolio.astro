@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { translations, type Lang } from "../i18n/translations";
 import {
- siHtml5, siJavascript, siPython, siTypescript,
+  siHtml5, siJavascript, siPython, siTypescript,
   siGooglecloud, siTerraform, siVault,  siMysql, 
   siClaude, siClaudecode, siGooglegemini, 
    siWhatsapp, 
@@ -11,6 +11,9 @@ import {
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = translations[lang];
+
+// Captura la ruta base (/zzed-dev/ en GitHub Pages o / en local)
+const baseUrl = import.meta.env.BASE_URL;
 
 const LASTFM_USER = import.meta.env.PUBLIC_LASTFM_USER ?? "dumbhell";
 const LASTFM_KEY  = import.meta.env.PUBLIC_LASTFM_API_KEY ?? "5e93d78dc4ec6cf704eee85b27015f8e";
@@ -91,7 +94,7 @@ const stack = [
   { label: "MySQL",          cls: "db",    icon: siMysql.path        },
   { label: "Claude",         cls: "ai",    icon: siClaude.path       },
   { label: "Gemini",         cls: "ai",    icon: siGooglegemini.path },
-  { label: "ChatGPT",         cls: "ai",    icon: null               },
+  { label: "ChatGPT",        cls: "ai",    icon: null               },
 ];
 
 // Pass i18n vars to client script
@@ -121,14 +124,14 @@ const scriptVars = {
     <!-- Nav -->
     <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm" style="background: var(--nav-bg); border-bottom: 1px solid var(--nav-border);">
       <div class="flex justify-between items-center px-4 md:px-8 py-4">
-        <span class="text-xs tracking-widest font-bold" style="color: var(--accent);">zzed<span style="color: var(--muted);">.dev</span></span>
+        <a href={baseUrl} class="text-xs tracking-widest font-bold" style="color: var(--accent);">zzed<span style="color: var(--muted);">.dev</span></a>
         <div class="flex gap-3 md:gap-6 items-center">
           <a href="#experience" class="nav-link hidden sm:inline">{t.nav.exp}</a>
           <a href="#projects"   class="nav-link hidden sm:inline">{t.nav.projects}</a>
           <a href="#stack"      class="nav-link hidden sm:inline">{t.nav.stack}</a>
           <a href="#uses"       class="nav-link hidden sm:inline">{t.nav.uses}</a>
           <a href="#interests"  class="nav-link hidden sm:inline">{t.nav.interests}</a>
-          <a href="/cv.pdf" target="_blank" class="nav-link hidden sm:inline">{t.nav.cv}</a>
+          <a href={`${baseUrl}cv.pdf`} target="_blank" class="nav-link hidden sm:inline">{t.nav.cv}</a>
           <a href="mailto:hi@gabotachak.dev" class="nav-link hidden sm:inline" style="color: var(--accent);">{t.nav.contact}</a>
           <!-- Lang switcher -->
           <a href={t.nav.langSwitchHref} class="nav-link text-[10px] tracking-widest border px-1.5 py-0.5 rounded" style="border-color: var(--border); color: var(--dim);" title={lang === 'en' ? 'Versión en español' : 'English version'}>{t.nav.langSwitch}</a>

@@ -1,5 +1,8 @@
 export type Lang = 'en' | 'es';
 
+// Captura la base configurada en Astro (ej: "/zzed-dev/" en GitHub Pages o "/" en local)
+const baseUrl = import.meta.env.BASE_URL;
+
 export const translations = {
   en: {
     meta: {
@@ -15,7 +18,7 @@ export const translations = {
       contact: "contact",
       cv: "cv",
       langSwitch: "es",
-      langSwitchHref: "/es/",
+      langSwitchHref: `${baseUrl}es/`, // Genera "/zzed-dev/es/"
     },
     hero: {
       badge: "identity_verified",
@@ -112,12 +115,12 @@ export const translations = {
       contact: "contacto",
       cv: "cv",
       langSwitch: "en",
-      langSwitchHref: "/",
+      langSwitchHref: baseUrl, // Vuelve a la raíz "/zzed-dev/"
     },
     hero: {
       badge: "identidad_verificada",
       bio: "Desarrollador Web con experiencia freelance en el desarrollo de sitios y soluciones digitales para locales gastronómicos y tiendas. Actualmente busco mi primera oportunidad en una empresa donde pueda seguir creciendo profesionalmente, ampliar mis conocimientos y aportar mis habilidades para contribuir al desarrollo y éxito del equipo.",
-      location: "¡Bienvenido! ☕ · Cordoba, Argentina 🇦🇷",
+      location: "¡Bienvenido! 💻 · Cordoba, Argentina 🇦🇷",
       saveContact: "Guardar Contacto",
     },
     roles: ["Full-Stack Developer", "JavaScript", "SQL", "Python", "Argentina 🇦🇷"],
