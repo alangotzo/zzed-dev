@@ -18,7 +18,7 @@ export const translations = {
       contact: "contact",
       cv: "cv",
       langSwitch: "es",
-      langSwitchHref: `${baseUrl}es/`, // Genera "/zzed-dev/es/"
+      langSwitchHref: `${baseUrl}/es`, // Genera "/zzed-dev/es/"
     },
     hero: {
       badge: "identity_verified",
