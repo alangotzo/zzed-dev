@@ -171,8 +171,13 @@ const scriptVars = {
 
         <!-- Avatar -->
         <div class="avatar-ring flex-shrink-0 self-start md:self-auto">
-          <img src={`${import.meta.env.BASE_URL}/avatar.jpg`} alt="Alan Fernandez" />
-        </div> 
+          <img
+            src={`${import.meta.env.BASE_URL}avatar.jpg`}
+            alt="Alan Fernandez"
+            width="150" height="150"
+            style="border-radius:50%; display:block; position:relative; z-index:1;"
+          />
+        </div>
 
         <!-- Text -->
         <div class="flex-1">
