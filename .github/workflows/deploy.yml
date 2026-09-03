@@ -28,7 +28,7 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          PUBLIC_LASTFM_API_KEY: ${{ secrets.PUBLIC_LASTFM_API_KEY }}
+          PUBLIC_LASTFM_API_KEY: 5e93d78dc4ec6cf704eee85b27015f8e
           PUBLIC_LASTFM_USER: dumbhell
 
       - uses: actions/upload-pages-artifact@v3

@@ -467,13 +467,13 @@ const scriptVars = {
     </footer>
   </div>
 <!-- Last.fm floating mini-player -->
- <a
+<a
   id="lastfm-widget"
-  href={`https://www.last.fm/user/${import.meta.env.PUBLIC_LASTFM_USER}`}
+  href={`https://www.last.fm/user/${LASTFM_USER}`}
   target="_blank"
   rel="noopener noreferrer"
-  data-user={import.meta.env.PUBLIC_LASTFM_USER}
-  data-key={import.meta.env.PUBLIC_LASTFM_KEY}
+  data-user={LASTFM_USER}
+  data-key={LASTFM_KEY}
   class="lastfm-widget"
 >
   <div style="position:relative; flex-shrink:0;">
@@ -494,7 +494,7 @@ const scriptVars = {
   <div style="flex:1; min-width:0;">
     <div style="display:flex; align-items:center; gap:6px; margin-bottom:2px;">
       <span id="lfm-status-dot" style="width:6px;height:6px;border-radius:50%;background:var(--muted);flex-shrink:0;"></span>
-      <span id="lfm-status-text" style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--tag-color);">Loading...</span>
+      <span id="lfm-status-text" style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--tag-color);">LOADING...</span>
     </div>
     <div id="lfm-track" style="font-size:11px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">—</div>
     <div id="lfm-artist" style="font-size:10px;color:var(--tag-color);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">—</div>
@@ -729,10 +729,14 @@ function timeAgo(ms) {
     const widget = document.getElementById('lastfm-widget');
     if (!widget) return;
 
+    // Leemos los valores renderizados en el HTML
     const user = widget.dataset.user;
     const key = widget.dataset.key;
 
-    if (!key || key === 'placeholder' || !user) return;
+    if (!key || key === 'undefined' || !user || user === 'undefined') {
+      console.warn('Last.fm: Falta usuario o API key');
+      return;
+    }
 
     try {
       const res = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${encodeURIComponent(user)}&api_key=${encodeURIComponent(key)}&format=json&limit=1`);
@@ -801,37 +805,9 @@ function timeAgo(ms) {
     }
   }
 
-  // Ejecución inicial y ciclo de refresco en tiempo real
+  // Inicialización
   fetchNowPlaying();
-  setInterval(fetchNowPlaying, 10000); // Consulta cada 10 segundos
-
-// Ejecutar
-fetchNowPlaying();
-setInterval(fetchNowPlaying, 15000);
-
-  // Inicialización y refresco automático cada 20s
-  function initLastFm() {
-    fetchNowPlaying();
-    const timer = setInterval(fetchNowPlaying, 20000);
-    document.addEventListener('astro:before-swap', () => clearInterval(timer), { once: true });
-  }
-
-  initLastFm();
-  document.addEventListener('astro:after-swap', initLastFm);
-
-  fetchNowPlaying();
-  setInterval(fetchNowPlaying, 30000);
-
-  // ── Scroll reveal ──
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  setInterval(fetchNowPlaying, 10000);
 
   // ── Live Argentina clock ──
   function updateClock() {
