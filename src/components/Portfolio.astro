@@ -466,46 +466,44 @@ const scriptVars = {
       </div>
     </footer>
   </div>
-
- <!-- Last.fm floating mini-player -->
-  <a
-    id="lastfm-widget"
-    href={`https://www.last.fm/user/${LASTFM_USER}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    data-user={LASTFM_USER}
-    data-key={LASTFM_KEY}
-    data-now-playing={t.lfm?.nowPlaying || 'REPRODUCIENDO'}
-    class="lastfm-widget"
-  >
-    <div style="position:relative; flex-shrink:0;">
-      <img
-        id="lfm-art"
-        src="" 
-        alt=""
-        style="width:36px;height:36px;border-radius:6px;object-fit:cover;display:none;"
-      />
-      <div id="lfm-art-placeholder" style="width:36px;height:36px;border-radius:6px;background:var(--art-placeholder-bg);display:flex;align-items:center;justify-content:center;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2">
-          <circle cx="12" cy="12" r="10" style="stroke: var(--muted);"/>
-          <circle cx="12" cy="12" r="3" style="stroke: var(--muted);"/>
-        </svg>
-      </div>
+<!-- Last.fm floating mini-player -->
+ <a
+  id="lastfm-widget"
+  href={`https://www.last.fm/user/${import.meta.env.PUBLIC_LASTFM_USER}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  data-user={import.meta.env.PUBLIC_LASTFM_USER}
+  data-key={import.meta.env.PUBLIC_LASTFM_KEY}
+  class="lastfm-widget"
+>
+  <div style="position:relative; flex-shrink:0;">
+    <img
+      id="lfm-art"
+      src="" 
+      alt=""
+      style="width:36px;height:36px;border-radius:6px;object-fit:cover;display:none;"
+    />
+    <div id="lfm-art-placeholder" style="width:36px;height:36px;border-radius:6px;background:var(--art-placeholder-bg);display:flex;align-items:center;justify-content:center;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2">
+        <circle cx="12" cy="12" r="10" style="stroke: var(--muted);"/>
+        <circle cx="12" cy="12" r="3" style="stroke: var(--muted);"/>
+      </svg>
     </div>
+  </div>
 
-    <div style="flex:1; min-width:0;">
-      <div style="display:flex; align-items:center; gap:6px; margin-bottom:2px;">
-        <span id="lfm-status-dot" style="width:6px;height:6px;border-radius:50%;background:var(--muted);flex-shrink:0;"></span>
-        <span id="lfm-status-text" style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--tag-color);">{t.lfm?.loading || 'LOADING...'}</span>
-      </div>
-      <div id="lfm-track" style="font-size:11px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">—</div>
-      <div id="lfm-artist" style="font-size:10px;color:var(--tag-color);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">—</div>
+  <div style="flex:1; min-width:0;">
+    <div style="display:flex; align-items:center; gap:6px; margin-bottom:2px;">
+      <span id="lfm-status-dot" style="width:6px;height:6px;border-radius:50%;background:var(--muted);flex-shrink:0;"></span>
+      <span id="lfm-status-text" style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--tag-color);">CARGANDO...</span>
     </div>
+    <div id="lfm-track" style="font-size:11px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">—</div>
+    <div id="lfm-artist" style="font-size:10px;color:var(--tag-color);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">—</div>
+  </div>
 
-    <svg style="flex-shrink:0;opacity:0.25;" width="14" height="14" viewBox="0 0 24 24" fill="#d51007">
-      <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm5.87 16.716c-.504.239-2.046.941-3.967.941-3.29 0-5.042-2.222-5.042-4.93 0-2.768 1.685-4.96 5.042-4.96 1.664 0 3.098.619 3.9.995l-.665 1.886c-.686-.361-1.64-.79-3.096-.79-1.97 0-3.076 1.363-3.076 2.86 0 1.616 1.106 2.889 3.076 2.889 1.244 0 2.303-.497 3.08-.879l.748 1.988z"/>
-    </svg>
-  </a>
+  <svg style="flex-shrink:0;opacity:0.25;" width="14" height="14" viewBox="0 0 24 24" fill="#d51007">
+    <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm5.87 16.716c-.504.239-2.046.941-3.967.941-3.29 0-5.042-2.222-5.042-4.93 0-2.768 1.685-4.96 5.042-4.96 1.664 0 3.098.619 3.9.995l-.665 1.886c-.686-.361-1.64-.79-3.096-.79-1.97 0-3.076 1.363-3.076 2.86 0 1.616 1.106 2.889 3.076 2.889 1.244 0 2.303-.497 3.08-.879l.748 1.988z"/>
+  </svg>
+</a>
 </Layout>
 
 <style>
@@ -715,97 +713,97 @@ const scriptVars = {
     setTimeout(function() { requestAnimationFrame(scramble); }, 100);
   }
 
+//Last.fm
 function timeAgo(ms) {
-  const diff = Date.now() - ms;
-  const m = Math.floor(diff / 60000);
-  const h = Math.floor(m / 60);
-  const d = Math.floor(h / 24);
-  if (d > 0) return d + 'd';
-  if (h > 0) return h + 'h';
-  if (m > 0) return m + 'm';
-  return 'ahora';
-}
-
-async function fetchNowPlaying() {
-  const widget = document.getElementById('lastfm-widget');
-  if (!widget) return;
-
-  const user = widget.dataset.user;
-  const key  = widget.dataset.key;
-
-  if (!key || key === 'placeholder' || !user) return;
-
-  try {
-    const res  = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${encodeURIComponent(user)}&api_key=${encodeURIComponent(key)}&format=json&limit=1`);
-    if (!res.ok) return;
-
-    const data = await res.json();
-    const track = data?.recenttracks?.track?.[0];
-    if (!track) return;
-
-    const isNowPlaying = track['@attr'] && track['@attr'].nowplaying === 'true';
-    const name   = track.name || '—';
-    const artist = (track.artist && track.artist['#text']) || '—';
-
-    // 1. Extraer la carátula probando de mayor a menor tamaño
-    let artUrl = '';
-    if (Array.isArray(track.image)) {
-      const imgObj = track.image.find(i => i.size === 'extralarge' && i['#text']) ||
-                     track.image.find(i => i.size === 'large' && i['#text']) ||
-                     track.image.find(i => i.size === 'medium' && i['#text']) ||
-                     track.image.find(i => i['#text']);
-      if (imgObj) artUrl = imgObj['#text'];
-    }
-
-    // Elementos DOM
-    const dot         = document.getElementById('lfm-status-dot');
-    const status      = document.getElementById('lfm-status-text');
-    const trackEl     = document.getElementById('lfm-track');
-    const artistEl    = document.getElementById('lfm-artist');
-    const artEl       = document.getElementById('lfm-art');
-    const placeholder = document.getElementById('lfm-art-placeholder');
-
-    // 2. Insertar Texto e Interpretación
-    if (trackEl)  trackEl.textContent  = name;
-    if (artistEl) artistEl.textContent = artist;
-
-    // 3. Renderizar imagen si existe URL no vacía
-    if (artUrl && artUrl.trim() !== '' && artEl) {
-      artEl.src = artUrl;
-      artEl.style.display = 'block';
-      if (placeholder) placeholder.style.display = 'none';
-    } else {
-      if (artEl) artEl.style.display = 'none';
-      if (placeholder) placeholder.style.display = 'flex';
-    }
-
-    // 4. Actualizar Estado (Escuchando vs Última reproducción)
-    if (isNowPlaying) {
-      if (dot) {
-        dot.style.background = '#1db954';
-        dot.style.animation = 'pulse-dot 1.5s ease-in-out infinite';
-      }
-      if (status) {
-        status.textContent = 'REPRODUCIENDO';
-        status.style.color = '#1db954';
-      }
-    } else {
-      const ts = track.date && track.date.uts ? parseInt(track.date.uts) * 1000 : null;
-      const ago = ts ? timeAgo(ts) : 'ahora';
-
-      if (dot) {
-        dot.style.background = 'var(--muted)';
-        dot.style.animation = 'none';
-      }
-      if (status) {
-        status.textContent = `hace ${ago}`;
-        status.style.color = 'var(--tag-color)';
-      }
-    }
-  } catch(e) {
-    console.error('Error al actualizar Last.fm:', e);
+    const diff = Date.now() - ms;
+    const m = Math.floor(diff / 60000);
+    const h = Math.floor(m / 60);
+    const d = Math.floor(h / 24);
+    if (d > 0) return d + 'd';
+    if (h > 0) return h + 'h';
+    if (m > 0) return m + 'm';
+    return 'ahora';
   }
-}
+
+  async function fetchNowPlaying() {
+    const widget = document.getElementById('lastfm-widget');
+    if (!widget) return;
+
+    const user = widget.dataset.user;
+    const key = widget.dataset.key;
+
+    if (!key || key === 'placeholder' || !user) return;
+
+    try {
+      const res = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${encodeURIComponent(user)}&api_key=${encodeURIComponent(key)}&format=json&limit=1`);
+      if (!res.ok) return;
+
+      const data = await res.json();
+      const track = data?.recenttracks?.track?.[0];
+      if (!track) return;
+
+      const isNowPlaying = track['@attr'] && track['@attr'].nowplaying === 'true';
+      const name = track.name || '—';
+      const artist = (track.artist && track.artist['#text']) || '—';
+
+      let artUrl = '';
+      if (Array.isArray(track.image)) {
+        const imgObj = track.image.find(i => i.size === 'extralarge' && i['#text']) ||
+                       track.image.find(i => i.size === 'large' && i['#text']) ||
+                       track.image.find(i => i.size === 'medium' && i['#text']) ||
+                       track.image.find(i => i['#text']);
+        if (imgObj) artUrl = imgObj['#text'];
+      }
+
+      const dot = document.getElementById('lfm-status-dot');
+      const status = document.getElementById('lfm-status-text');
+      const trackEl = document.getElementById('lfm-track');
+      const artistEl = document.getElementById('lfm-artist');
+      const artEl = document.getElementById('lfm-art');
+      const placeholder = document.getElementById('lfm-art-placeholder');
+
+      if (trackEl) trackEl.textContent = name;
+      if (artistEl) artistEl.textContent = artist;
+
+      if (artUrl && artUrl.trim() !== '' && artEl) {
+        artEl.src = artUrl;
+        artEl.style.display = 'block';
+        if (placeholder) placeholder.style.display = 'none';
+      } else {
+        if (artEl) artEl.style.display = 'none';
+        if (placeholder) placeholder.style.display = 'flex';
+      }
+
+      if (isNowPlaying) {
+        if (dot) {
+          dot.style.background = '#1db954';
+          dot.style.animation = 'pulse-dot 1.5s ease-in-out infinite';
+        }
+        if (status) {
+          status.textContent = 'REPRODUCIENDO';
+          status.style.color = '#1db954';
+        }
+      } else {
+        const ts = track.date && track.date.uts ? parseInt(track.date.uts) * 1000 : null;
+        const ago = ts ? timeAgo(ts) : 'ahora';
+
+        if (dot) {
+          dot.style.background = 'var(--muted)';
+          dot.style.animation = 'none';
+        }
+        if (status) {
+          status.textContent = `HACE ${ago.toUpperCase()}`;
+          status.style.color = 'var(--tag-color)';
+        }
+      }
+    } catch(e) {
+      console.error('Error al actualizar Last.fm:', e);
+    }
+  }
+
+  // Ejecución inicial y ciclo de refresco en tiempo real
+  fetchNowPlaying();
+  setInterval(fetchNowPlaying, 10000); // Consulta cada 10 segundos
 
 // Ejecutar
 fetchNowPlaying();
