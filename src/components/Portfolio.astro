@@ -13,7 +13,7 @@ const { lang } = Astro.props;
 const t = translations[lang];
 
 const LASTFM_USER = import.meta.env.PUBLIC_LASTFM_USER ?? "dumbhell";
-const LASTFM_KEY  = import.meta.env.PUBLIC_LASTFM_API_KEY ?? "ed1b14317de8576547035c7f9c49bfb1";
+const LASTFM_KEY  = import.meta.env.PUBLIC_LASTFM_API_KEY ?? "5e93d78dc4ec6cf704eee85b27015f8e";
 
 const iconMap: Record<string, string> = {
   'Python':         siPython.path,
@@ -494,7 +494,7 @@ const scriptVars = {
   <div style="flex:1; min-width:0;">
     <div style="display:flex; align-items:center; gap:6px; margin-bottom:2px;">
       <span id="lfm-status-dot" style="width:6px;height:6px;border-radius:50%;background:var(--muted);flex-shrink:0;"></span>
-      <span id="lfm-status-text" style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--tag-color);">CARGANDO...</span>
+      <span id="lfm-status-text" style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--tag-color);">Loading...</span>
     </div>
     <div id="lfm-track" style="font-size:11px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">—</div>
     <div id="lfm-artist" style="font-size:10px;color:var(--tag-color);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">—</div>
