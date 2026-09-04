@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+
 interface Props {
   title?: string;
   description?: string;
@@ -12,7 +13,15 @@ const {
   lang = "en",
 } = Astro.props;
 
+// Obtener la base para GitHub Pages (/zzed-dev/ o /)
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+
+// URL absoluta para las imágenes de Open Graph (Twitter / LinkedIn)
+const ogImageUrl = new URL(`${baseUrl}avatar.jpg`, Astro.site).toString();
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -48,11 +57,11 @@ const jsonLd = {
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content="public/avatar.jpg" />
+    <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="200" />
     <meta property="og:image:height" content="200" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:image" content="public/avatar.jpg" />
+    <meta name="twitter:image" content={ogImageUrl} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -63,8 +72,11 @@ const jsonLd = {
     <link rel="alternate" hreflang="en" href="https://alangotzo.dev/" />
     <link rel="alternate" hreflang="es" href="https://alangotzo.dev/es/" />
     <link rel="alternate" hreflang="x-default" href="https://alangotzo.dev/" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Favicons con ruta base dinámica -->
+    <link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`} />
+    <link rel="icon" type="image/x-icon" href={`${baseUrl}favicon.ico`} />
+
     <title>{title}</title>
     <!-- Anti-FOUC: apply saved theme + remove no-js class before first paint -->
     <script is:inline>
